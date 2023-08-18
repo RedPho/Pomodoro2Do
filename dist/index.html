@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="pastel">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="Pomodoro.js" defer></script>
+    <script src="theme.js" defer></script>
+    <title>Pomodoro2Do</title>
+    <link rel="icon" type="image/x-icon" href="./resimler/maxresdefault.jpg">
+    <link rel="stylesheet" href="output.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Shadows+Into+Light&display=swap');
+    </style>
+</head>
+
+<body class="flex flex-col items-center p-1">
+
+    <header class="absolute top-4 w-full px-4">
+        <nav class="flex ">
+            <button id="tarih" class="btn btn-secondary flex text-center  btn-sm sm:btn-md"></button>
+            <a href="ToDo.html" class="btn btn-secondary flex ml-auto btn-sm sm:btn-md">TO DO<svg height="45px"
+                    viewBox="-7.44 -7.44 38.88 38.88" xmlns="http://www.w3.org/2000/svg" fill="#000000"
+                    stroke="#000000">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path fill="none" stroke="#000000" stroke-width="2"
+                            d="M20,11 L22,8 L20,5 L12,5 L12,11 L20,11 Z M12,24 L12,0 M4,2 L2,5 L4,8 L12,8 L12,2 L4,2 Z">
+                        </path>
+                    </g>
+                </svg></a>
+        </nav>
+    </header>
+
+
+
+    <div id="sayac">
+        <div class="flex justify-center gap-1 mt-36 countdown  text-9xl">
+            <div id="dakika" class="pr-4 " style="--value:25;"></div>:
+            <div id="saniye" class="pr-4" style="--value:0;"></div>
+        </div>
+    </div>
+
+
+    <div id="sayac-butonlar">
+        <div class="flex justify-center gap-1 ">
+            <button id="start-stop" class="btn basis-1/3">Başlat</button>
+            <button id="reset" class="btn basis-1/3">Sıfırla</button>
+            <button id="calisma-mola" class="btn basis-1/3">Molaya geç</button>
+        </div>
+    </div>
+
+
+
+
+    <div id="kronometre" hidden>
+        <div class="flex justify-center gap-1 mt-36 countdown text-9xl">
+            <div id="kronometre-dakika" class="pr-4 " style="--value:0;"></div>:
+            <div id="kronometre-saniye" class="pr-4" style="--value:0;"></div>
+        </div>
+    </div>
+
+
+
+    <div id="kronometre-butonlar" hidden>
+        <div class="flex justify-center gap-1 ">
+            <button id="kronometre-start-stop" class="btn basis-1/3">Başlat</button>
+            <button id="kronometre-reset" class="btn basis-1/3">Sıfırla</button>
+        </div>
+    </div>
+
+
+
+    <div class="dropdown dropdown-top dropdown-end absolute right-4 bottom-4 ">
+        <label tabindex="0" class="btn m-1">Menu</label>
+        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+            <li><button id="ses-btn">Sesler</button></li>
+            <li><button id="video-btn">Benimle Çalış</button></li>
+            <li><button id="ambiance-btn">Ambiyanslar</button></li>
+            <li><button id="tema-btn">Temalar</button></li>
+            <li><button id="pomodoro-menu-btn">Sure ayari</button></li>
+            <li><button id="kronometre-btn">Kronometre</button></li>
+
+        </ul>
+    </div>
+
+
+    <div id="ses-menu" class="absolute bg-base-100 m-auto top-16 sm:w-1/2 w-3/4 border rounded-lg border-black p-2 bg" hidden>
+        <div class="flex flex-row-reverse"><button class="btn btn-xs btn-circle btn-error"
+                id="ses-menu-kapat">X</button></div>
+        <div class="flex flex-col">
+            <button class="btn rounded-none ses-btn">Yağmur</button>
+            <button class="btn rounded-none ses-btn">Rüzgar</button>
+            <button class="btn rounded-none ses-btn">Kütüphane</button>
+            <button class="btn rounded-none ses-btn">Kafe</button>
+            <button class="btn rounded-none ses-btn">Ateş</button>
+            <button class="btn rounded-none ses-btn">Doğa</button>
+            <button class="btn rounded-none ses-btn">Okyanus</button>
+            <button class="btn rounded-none ses-btn">Şehir</button>
+            <button class="btn rounded-none ses-btn">Sınav</button>
+            <button class="btn rounded-none ses-btn">Tren</button>
+        </div>
+    </div>
+
+
+    <div id="video-menu" class="absolute bg-base-100 m-auto top-16 sm:w-1/2 w-3/4 border rounded-lg border-black p-2 bg" hidden>
+        <div class="flex flex-row-reverse"><button class="btn btn-xs btn-circle btn-error"
+                id="video-menu-kapat">X</button></div>
+        <div class="flex flex-col">
+            <button class="btn rounded-none video-btn">Study with Duru Üst</button>
+            <button class="btn rounded-none video-btn">Study with Victoria Ceren</button>
+            <button class="btn rounded-none video-btn">Study with Lo-Fi Girl</button>
+            <button class="btn rounded-none video-btn">Code with Darin Doria</button>
+            <button class="btn rounded-none video-btn">Study with Hera Lo-Fi Style</button>
+            <button class="btn rounded-none video-btn">Study with Özcan family</button>
+            <button class="btn rounded-none video-btn">Study with Selen Duru</button>
+            <button class="btn rounded-none video-btn">Study with Tunç Kurt Lo-Fi Style</button>
+            <button class="btn rounded-none video-btn">Study with Daengun</button>
+            <button class="btn rounded-none video-btn">Study with Yoora</button>
+
+
+        </div>
+    </div>
+
+
+    <div id="ambiance-menu" class="absolute bg-base-100 m-auto top-16 sm:w-1/2 w-3/4 border rounded-lg border-black p-2 bg" hidden>
+        <div class="flex flex-row-reverse"><button class="btn btn-xs btn-circle btn-error"
+                id="ambiance-menu-kapat">X</button></div>
+        <div class="flex flex-col">
+            <button class="btn rounded-none ambiance-btn">Night Of The Coruscant</button>
+            <button class="btn rounded-none ambiance-btn">Night In The Futuristic Apartment</button>
+            <button class="btn rounded-none ambiance-btn">Gryffindor House Bedroom With Harry and Ron</button>
+            <button class="btn rounded-none ambiance-btn">Cozy Bedroom With A Night View Of New York</button>
+            <button class="btn rounded-none ambiance-btn">Rainy Library With Fireplace</button>
+            <button class="btn rounded-none ambiance-btn">The Cabin In The Forest With Rainy Outside</button>
+            <button class="btn rounded-none ambiance-btn">Hobbit Village</button>
+            <button class="btn rounded-none ambiance-btn">Ocean</button>
+            <button class="btn rounded-none ambiance-btn">Sleeping On The Hogwarts Express</button>
+            <button class="btn rounded-none ambiance-btn">Heavy Rain In Victorian London</button>
+
+
+        </div>
+    </div>
+
+
+
+    <div id="tema-menu" class="absolute bg-base-100 m-auto top-16 sm:w-1/2 w-3/4 border rounded-lg border-black p-2 bg"
+        hidden>
+        <div class="flex flex-row-reverse"><button class="btn btn-xs btn-circle btn-error"
+                id="tema-menu-kapat">X</button></div>
+        <div class=" grid grid-cols-2">
+            <button class="btn rounded-none tema-btn" style="background-color: #b8b8b8; color: #ffffff;">Wireframe</button>
+            <button class="btn rounded-none tema-btn" style="background-color: #e4d8b4; color: #ffffff;">Retro</button>
+            <button class="btn rounded-none tema-btn" style="background-color: #cebdd4; color: #ffffff;">Pastel</button>
+            <button class="btn rounded-none tema-btn" style="background-color: #e4b5d6; color: #ffffff;">Valentine</button>
+            <button class="btn rounded-none tema-btn" style="background-color: #3db868; color: #ffffff;">Emerald</button>
+            <button class="btn rounded-none tema-btn" style="background-color: #4b8e03; color: #ffffff;">Lemonade</button>
+            <button class="btn rounded-none tema-btn" style="background-color: #db924b; color: #ffffff;">Coffee</button>
+            <button class="btn rounded-none tema-btn" style="background-color: #bc8b1c; color: #ffffff;">Bumblebee</button>
+            <button class="btn rounded-none tema-btn" style="background-color: #2f5396; color: #ffffff;">Aqua</button>
+            <button class="btn rounded-none tema-btn" style="background-color: #2d1b69; color: #ffffff;">Synthwave</button>
+            <button class="btn rounded-none tema-btn" style="background-color: #4a6652; color: #ffffff;">Garden</button>
+            <button class="btn rounded-none tema-btn" style="background-color: #363c44; color: #ffffff;">Dracula</button>
+            <button class="btn rounded-none tema-btn" style="background-color: #1d1d1d; color: #ffffff;">Business</button>
+            <button class="btn rounded-none tema-btn" style="background-color: #1e1e1e; color: #ffffff;">Halloween</button>
+            <button class="btn rounded-none tema-btn" style="background-color: #0c1a2b; color: #ffffff;">Night</button>
+            <button class="btn rounded-none tema-btn" style="background-color: #0c0c0c; color: #ffffff;">Black</button>
+        </div>
+    </div>
+
+
+    <div id="pomodoro-menu"
+        class="absolute bg-base-100 m-auto top-1/4 w-1/2 sm:w-1/4 border rounded-lg border-black p-2 bg pb-8" hidden>
+        <div class="flex flex-row-reverse"><button class="btn btn-xs btn-circle btn-error absolute right-2 top-2"
+                id="pomodoro-menu-kapat">X</button></div>
+        <div class="flex flex-col items-center justify-center">
+            <label for="pomodoro-input" class="">Pomodoro:</label>
+            <input name="pomodoro-input" id="pomodoro-input" min="1" type="number"
+                class="input input-bordered input-sm">
+            <label for="mola-input" class="">Mola: </label>
+            <input name="mola-input" id="mola-input" min="1" type="number" class="input input-bordered input-sm">
+        </div>
+    </div>
+
+
+
+
+    <div id="video-container" class="overflow-hidden w-[100%]  h-[100%] pointer-events-none absolute -z-10 top-0" hidden>
+        <iframe width="560" height="315" class="w-[300%] ml-[-100%] h-[100%] top-0" src="" 
+            frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    </div>
+
+
+</body>
+</html>
